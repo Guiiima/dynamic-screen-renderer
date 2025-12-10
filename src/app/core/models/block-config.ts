@@ -1,7 +1,7 @@
 export interface BlockConfig {
-  id: string;             
-  type: string;           
-  data: any;             
+  id?: string;             
+  type?: string;           
+  data?: any;             
   slots?: {               
     [key: string]: BlockConfig[]; 
   };
