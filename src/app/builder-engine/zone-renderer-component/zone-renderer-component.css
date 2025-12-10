@@ -1,0 +1,14 @@
+.component-wrapper {
+      position: relative;
+      border: 2px solid transparent; /* Borda invisível por padrão */
+      transition: all 0.2s;
+    }
+    .component-wrapper:hover {
+      border-color: #74b9ff; /* Azul claro ao passar o mouse */
+      cursor: pointer;
+    }
+    .component-wrapper.selected {
+      border-color: #0984e3; /* Azul forte quando clicado */
+      box-shadow: 0 0 0 4px rgba(9, 132, 227, 0.2);
+      z-index: 10;
+    }

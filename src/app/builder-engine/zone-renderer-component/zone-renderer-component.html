@@ -1,8 +1,13 @@
 <ng-container *ngFor="let block of blocks">
   
-  <ng-container *ngComponentOutlet="
-      resolve(block.type); 
-      inputs: { data: block.data }">
-  </ng-container>
+  <div 
+    class="component-wrapper"
+    [class.selected]="builderService.selectedBlock() === block"
+    (click)="onSelect(block, $event)">
+    
+    <ng-container *ngComponentOutlet="resolve(block.type); inputs: { data: block.data }">
+    </ng-container>
 
-</ng-container>
+  </div>
+
+</ng-container> 

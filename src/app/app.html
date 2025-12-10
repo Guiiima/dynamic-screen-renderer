@@ -1,9 +1,45 @@
-<div style="max-width: 900px; margin: 0 auto; padding: 20px; font-family: sans-serif;">
+<aside class="sidebar">
   
-  <h1>Meu Page Builder</h1>
-  <p>Testando a renderização dinâmica com arquivos separados.</p>
-  <hr>
+  <ng-container *ngIf="!builderService.selectedBlock()">
+    <h3>Ferramentas</h3>
+    <div class="button-group">
+      <button (click)="builderService.addComponent('HERO_BANNER')">+ Hero</button>
+      <button (click)="builderService.addComponent('INFO_TEXT')">+ Texto</button>
+      <button (click)="builderService.addComponent('LAYOUT_2_COLUNAS')">+ Colunas</button>
+    </div>
+    <hr>
+    <button (click)="builderService.clearPage()" class="danger">Limpar Tudo</button>
+  </ng-container>
 
-  <app-zone-renderer [blocks]="pageConfig"></app-zone-renderer>
+  <ng-container *ngIf="builderService.selectedBlock() as activeBlock">
+    
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <h3>Editar</h3>
+      <button (click)="builderService.selectBlock(null)" style="background:none; border:none; color: white; cursor:pointer;">X</button>
+    </div>
 
-</div>
+    <p style="font-size: 0.8rem; opacity: 0.7;">Tipo: {{ activeBlock.type }}</p>
+
+    <div class="edit-form">
+      
+      <div *ngIf="activeBlock.type === 'HERO_BANNER'" class="field-group">
+        <label>Título</label>
+        <input type="text" [(ngModel)]="activeBlock.data.title" (input)="builderService.updateBlock()">
+        
+        <label>Subtítulo</label>
+        <input type="text" [(ngModel)]="activeBlock.data.subtitle" (input)="builderService.updateBlock()">
+      </div>
+
+      <div *ngIf="activeBlock.type === 'INFO_TEXT'" class="field-group">
+        <label>Conteúdo</label>
+        <textarea rows="5" [(ngModel)]="activeBlock.data.content" (input)="builderService.updateBlock()"></textarea>
+      </div>
+
+    </div>
+
+    <hr>
+    <button (click)="builderService.deleteSelected()" class="danger">Excluir Bloco</button>
+
+  </ng-container>
+
+</aside>
