@@ -1,1 +1,13 @@
-<p>two-colum works!</p>
+<div class="row">
+  
+  <div class="column left">
+    <div class="zone-label">Esq</div>
+    <app-zone-renderer [blocks]="data.leftColumn || []"></app-zone-renderer>
+  </div>
+
+  <div class="column right">
+    <div class="zone-label">Dir</div>
+    <app-zone-renderer [blocks]="data.rightColumn || []"></app-zone-renderer>
+  </div>
+
+</div>

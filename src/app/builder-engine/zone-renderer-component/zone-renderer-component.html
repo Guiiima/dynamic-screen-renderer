@@ -1,1 +1,8 @@
-<p>zone-renderer-component works!</p>
+<ng-container *ngFor="let block of blocks">
+  
+  <ng-container *ngComponentOutlet="
+      resolve(block.type); 
+      inputs: { data: block.data }">
+  </ng-container>
+
+</ng-container>
